@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 
+//Bring in the asynchronous fetchPosts action
+import { fetchPosts } from '../actions/postsActions';
+
 //Redux state is now in the props of the component
-const PostsPage = ({ loading, posts, hasErrors }) => {
+const PostsPage = ({ dispatch, loading, posts, hasErrors }) => {
+    useEffect(() => {
+        dispatch(fetchPosts())
+    }, [dispatch])
+
     return (
         <section>
             <h1>Posts</h1>
